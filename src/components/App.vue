@@ -1,9 +1,7 @@
 <template>
   <div class="podlove" :class="mode">
-    <div class="podlove-player--header" :style="headerStyle(theme)">
-      <PodloveInfo />
-      <PodlovePlayer />
-    </div>
+    <PodloveInfo />
+    <PodlovePlayer />
     <PodloveTabs />
     <PodloveShareOverlay />
   </div>
@@ -15,15 +13,10 @@
   import PodloveTabs from './tabs/Tabs.vue'
   import PodloveShareOverlay from './overlays/share/Share.vue'
 
-  const headerStyle = theme => ({
-    'background-color': theme.player.background
-  })
-
   export default {
     name: 'app',
     data () {
       return {
-        theme: this.$select('theme'),
         mode: this.$select('mode')
       }
     },
@@ -32,9 +25,6 @@
       PodlovePlayer,
       PodloveTabs,
       PodloveShareOverlay
-    },
-    methods: {
-      headerStyle
     }
   }
 </script>
@@ -46,14 +36,13 @@
 
   @import 'share';
   @import 'utils';
+  @import 'grid';
 
   .podlove {
     display: block;
     position: relative;
     max-width: $width-xl;
     min-width: $width-xs;
-
-    border: 1px solid rgba($accent-color, 0.2);
 
     @include font();
   }

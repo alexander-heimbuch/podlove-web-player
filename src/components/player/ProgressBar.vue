@@ -7,11 +7,11 @@
       v-on:change="onChange"
       v-on:input="onInput"
     />
-    <span class="podlove-player--progress-range"></span>
-    <span class="podlove-player--progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
-    <span class="podlove-player--progress-track" :style="trackStyle(theme, thumbPosition)"></span>
+    <span class="progress-range"></span>
+    <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
+    <span class="progress-track" :style="trackStyle(theme, thumbPosition)"></span>
     <ChaptersIndicator />
-    <span class="podlove-player--progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
+    <span class="progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
   </div>
 
 </template>
@@ -100,13 +100,13 @@
     }
 
     &.idle {
-      .podlove-player--progress-thumb {
+      .progress-thumb {
         opacity: 0;
       }
     }
   }
 
-  .podlove-player--progress-range {
+  .progress-range {
     display: block;
     position: absolute;
     width: 100%;
@@ -117,7 +117,7 @@
     pointer-events: none;
   }
 
-  .podlove-player--progress-track {
+  .progress-track {
     display: block;
     position: absolute;
     left: 0;
@@ -126,7 +126,7 @@
     pointer-events: none;
   }
 
-  .podlove-player--progress-thumb {
+  .progress-thumb {
     position: absolute;
     border: 1px solid;
     height: 14px;
@@ -135,7 +135,7 @@
     pointer-events: none;
   }
 
-  .podlove-player--progress-buffer {
+  .progress-buffer {
     display: block;
     opacity: 1;
     position: absolute;

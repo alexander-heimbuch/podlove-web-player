@@ -1,9 +1,7 @@
 <template>
-  <div class="podlove-player" :class="playstate">
-    <div class="podlove-player--control" :class="playstate">
-      <div class="podlove-player--download"></div>
-      <ControlBar class="podlove-player--control-bar"/>
-      <div class="podlove-player--share" v-if="reference.share && reference.config"><ShareButton /></div>
+  <div class="podlove-player" :style="backgroundStyle(theme)" :class="playstate">
+    <div class="control" :class="playstate">
+      <ControlBar class="control-bar"/>
     </div>
     <ProgressBar />
     <Timer />
@@ -17,11 +15,16 @@
 
   import ShareButton from '../overlays/share/ShareButton.vue'
 
+  const backgroundStyle = theme => ({
+    'background-color': theme.player.background
+  })
+
   export default {
     data() {
       return {
         playstate: this.$select('playstate'),
-        reference: this.$select('reference')
+        reference: this.$select('reference'),
+        theme: this.$select('theme')
       }
     },
     components: {
@@ -29,6 +32,9 @@
       ControlBar,
       ProgressBar,
       Timer
+    },
+    methods: {
+      backgroundStyle
     }
   }
 </script>
@@ -50,33 +56,12 @@
     }
   }
 
-  .podlove-player--control {
+  .control {
     width: 100%;
     display: flex;
 
     &.start {
       margin-bottom: $margin;
-    }
-
-    .podlove-player--download, .podlove-player--share {
-      width: 10%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .podlove-player--download {
-      align-items: left;
-    }
-
-    .podlove-player--share {
-      align-items: right;
-      @media screen and (max-width: $width-l) {
-        display: none;
-      }
-    }
-
-    .podlove-player--control-bar {
-      width: 80%;
     }
   }
 </style>
