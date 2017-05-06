@@ -568,6 +568,10 @@ babel-messages@^6.22.0, babel-messages@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
+babel-plugin-add-module-exports@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-add-module-exports/-/babel-plugin-add-module-exports-0.2.1.tgz#9ae9a1f4a8dc67f0cdec4f4aeda1e43a5ff65e25"
+
 babel-plugin-ava-throws-helper@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-ava-throws-helper/-/babel-plugin-ava-throws-helper-1.0.0.tgz#8fe6e79d2fd19838b5c3649f89cfb03fd563e241"
@@ -2428,12 +2432,6 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-fn-compose@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/fn-compose/-/fn-compose-1.1.0.tgz#6a18465403a6898c7a324566aa0409820ba44a07"
-  dependencies:
-    maybe-args "0.0.3"
-
 fn-name@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/fn-name/-/fn-name-2.0.1.tgz#5214d7537a4d06a4a301c0cc262feb84188002e7"
@@ -3012,12 +3010,6 @@ inject-loader@3.0.0-beta4:
   resolved "https://registry.yarnpkg.com/inject-loader/-/inject-loader-3.0.0-beta4.tgz#772a5010f0db7dc50b35e66e29fd22ac056be46b"
   dependencies:
     loader-utils "^0.2.3"
-
-inline-environment-variables-webpack-plugin@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/inline-environment-variables-webpack-plugin/-/inline-environment-variables-webpack-plugin-1.2.0.tgz#02d74eb288ba82b36006d9fcfc385f403665efd9"
-  dependencies:
-    fn-compose "^1.1.0"
 
 interpret@^1.0.0:
   version "1.0.2"
@@ -3684,10 +3676,6 @@ math-expression-evaluator@^1.2.14:
 max-timeout@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/max-timeout/-/max-timeout-1.0.0.tgz#b68f69a2f99e0b476fd4cb23e2059ca750715e1f"
-
-maybe-args@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/maybe-args/-/maybe-args-0.0.3.tgz#333396b7660fa59fb9a49b73035843a836d4f026"
 
 md5-hex@^1.2.0, md5-hex@^1.3.0:
   version "1.3.0"

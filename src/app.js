@@ -1,13 +1,10 @@
-import Vue from 'vue'
 import { head } from 'lodash'
 
 import runtime from 'utils/runtime'
-import registerDirectives from './directives'
+import { Renderer } from './core'
 
 // Import share static page
 require('file-loader?name=share.html!./statics/share.html')
-
-registerDirectives(Vue)
 
 // Store
 import store from 'store'
@@ -24,7 +21,7 @@ export default config => {
 
   window.PODLOVE_STORE = store
 
-  return new Vue({
+  return new Renderer({
     el: head(document.getElementsByTagName('PodlovePlayer')),
     render: h => h(App)
   })
