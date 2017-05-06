@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import clipboard from './directives/clipboard'
 import marquee from './directives/marquee'
+import translate from './translate'
 
 const createRenderer = instance => {
   instance.directive('clipboard', clipboard)
@@ -8,4 +9,9 @@ const createRenderer = instance => {
   return instance
 }
 
-export const Renderer = createRenderer(Vue)
+const Renderer = createRenderer(Vue)
+
+export {
+  translate,
+  Renderer
+}

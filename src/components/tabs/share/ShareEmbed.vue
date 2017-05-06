@@ -1,6 +1,6 @@
 <template>
     <div class="embed">
-      <h4 class="title">Embed</h4>
+      <h4 class="title">{{ translate.SHARE.EMBED }}</h4>
       <div class="input-row input-group">
         <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.embed, playtime)" />
         <PodloveButton
@@ -8,7 +8,7 @@
           :data-clipboard-text="clipboardContent(reference, share.embed, playtime)"
           v-clipboard
           :style="buttonStyle(theme)">
-            copy
+            {{ translate.SHARE.COPY }}
         </PodloveButton>
       </div>
       <div class="input-row">
@@ -17,7 +17,7 @@
           <input type="text" class="input-text" :value="secondsToTime(share.embed.starttime)" v-on:input="setStarttime"/>
         </div>
         <div class="share-config--size">
-          <label class="input-label">Size:</label>
+          <label class="input-label">{{ translate.SHARE.SIZE }}</label>
           <select class="share-input" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
             <option v-for="option in share.embed.availableSizes" v-bind:value="option">
               {{ option }}
