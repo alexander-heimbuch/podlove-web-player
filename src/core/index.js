@@ -1,7 +1,9 @@
 import Vue from 'vue'
+import VueI18n from 'vue-i18n'
+
 import clipboard from './directives/clipboard'
 import marquee from './directives/marquee'
-import translate from './translate'
+import languagePacks from 'lang'
 
 const createRenderer = instance => {
   instance.directive('clipboard', clipboard)
@@ -12,6 +14,5 @@ const createRenderer = instance => {
 const Renderer = createRenderer(Vue)
 
 export {
-  translate,
   Renderer
 }

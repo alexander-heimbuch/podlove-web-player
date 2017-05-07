@@ -6030,6 +6030,10 @@ vue-hot-reload-api@^2.0.11:
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.0.11.tgz#bf26374fb73366ce03f799e65ef5dfd0e28a1568"
 
+vue-i18n@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-6.1.1.tgz#6481915c59f16692b5f4bd8681afdce62492570c"
+
 vue-loader@11.3.4:
   version "11.3.4"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-11.3.4.tgz#65e10a44ce092d906e14bbc72981dec99eb090d2"

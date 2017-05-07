@@ -3,15 +3,15 @@
     <TabHeader>
       <TabHeaderItem :active="tabs.chapters" :click="toggleTab('chapters')" v-if="chapters.length > 0">
         <ChaptersIcon slot="icon"></ChaptersIcon>
-        <span slot="title">{{ translate('CHAPTERS.TITLE') }}</span>
+        <span slot="title">{{ $t('CHAPTERS.TITLE') }}</span>
       </TabHeaderItem>
       <TabHeaderItem v-if="(reference.config && reference.share) || reference.origin" :active="tabs.share" :click="toggleTab('share')">
         <ShareIcon slot="icon"></ShareIcon>
-        <span slot="title">{{ translate('SHARE.TITLE') }}</span>
+        <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </TabHeaderItem>
       <TabHeaderItem :active="tabs.settings" :click="toggleTab('settings')">
         <SettingsIcon slot="icon"></SettingsIcon>
-        <span slot="title">{{ translate('SETTINGS.TITLE') }}</span>
+        <span slot="title">{{ $t('SETTINGS.TITLE') }}</span>
       </TabHeaderItem>
     </TabHeader>
     <TabBody :active="tabs.chapters" v-if="chapters.length > 0">
@@ -62,7 +62,6 @@ export default {
     }
   },
   methods: {
-    translate,
     containerStyle,
     toggleTab
   },
