@@ -8,7 +8,8 @@ const initMediaPlayer = (mediaPlayer, dispatch, config) =>
     onPlay: () => dispatch(actions.playEvent()),
     onPause: () => dispatch(actions.pauseEvent()),
     onStop: () => dispatch(actions.stopEvent()),
-    onLoad: () => dispatch(actions.loading())
+    onLoad: () => dispatch(actions.loading()),
+    onError: (title, message) => dispatch(actions.setError(title, message, 'LOAD_ERROR'))
   })
 
 let mediaElement = null

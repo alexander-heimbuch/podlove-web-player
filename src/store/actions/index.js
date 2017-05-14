@@ -5,5 +5,6 @@ import * as share from './share'
 import * as theme from './theme'
 import * as quantiles from './quantiles'
 import * as l10n from './l10n'
+import * as error from './error'
 
-export default Object.assign({}, init, player, tabs, share, theme, quantiles, l10n)
+export default Object.assign({}, init, player, tabs, share, theme, quantiles, l10n, error)

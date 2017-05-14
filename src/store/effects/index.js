@@ -3,6 +3,7 @@ import storageEffectsFactory from './storage'
 import keyboardEffectsFactory from './keyboard'
 import idleEffects from './idle'
 import quantileEffects from './quantiles'
+import errorEffects from './error'
 
 import storage from 'utils/storage'
 import keyhandler from 'utils/keyboard'
@@ -22,5 +23,6 @@ export default store => {
     mediaEffects(store, action)
     idleEffects(store, action)
     quantileEffects(store, action)
+    errorEffects(store, action)
   }
 }

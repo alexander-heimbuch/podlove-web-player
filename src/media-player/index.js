@@ -11,7 +11,16 @@ import buffer from './buffer'
 */
 let ticker
 
-export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, onPause, onStop, onLoad}) => {
+export default (audio = [], {
+  setPlaytime,
+  setBufferState,
+  setDuration,
+  onPlay,
+  onPause,
+  onStop,
+  onLoad,
+  onError
+}) => {
   const player = new Howl({
     src: audio,
     html5: true,
@@ -44,6 +53,11 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
   player.on('stop', () => {
     clearInterval(ticker)
     onStop()
+  })
+
+  // Error
+  player.on('loaderror', () => {
+    onError('ERROR.LOADING.TITLE', 'ERROR.LOADING.MESSAGE')
   })
 
   // Extend seek functionality to be capable of jumping in without loaded player

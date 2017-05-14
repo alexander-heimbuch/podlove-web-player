@@ -1,12 +1,19 @@
-const setError = (title, message) => ({
-    action: 'SET_ERROR',
+const setError = (title, message, errorType) => ({
+    type: 'SET_ERROR',
+    errorType,
     payload: { title, message }
 })
 
-const showErroor = () => ({
-    action: 'SHOW_ERROR'
+const showError = () => ({
+    type: 'SHOW_ERROR'
 })
 
-const hideErroor = () => ({
-    action: 'HIDE_ERROR'
+const hideError = () => ({
+    type: 'HIDE_ERROR'
 })
+
+export {
+    setError,
+    showError,
+    hideError
+}

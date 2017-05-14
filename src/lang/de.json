@@ -15,5 +15,11 @@
     "VOLUME": "Lautstärke",
     "SPEED": "Geschwindigkeit",
     "DEBUG_STATE": "Debug State exportieren"
+  },
+  "ERROR": {
+    "LOADING": {
+      "MESSAGE": "Die Audiodatei konnte nicht geladen werden, entweder eine Fehlkonfiguration liegt vor oder der Server ist nicht erreichbar",
+      "TITLE": "Fehelr beim laden der Audiodatei"
+    }
   }
 }
