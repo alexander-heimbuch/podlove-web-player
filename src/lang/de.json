@@ -16,6 +16,9 @@
     "SPEED": "Geschwindigkeit",
     "DEBUG_STATE": "Debug State exportieren"
   },
+  "PLAYER": {
+    "REPLAY": "Wiederholen"
+  },
   "ERROR": {
     "LOADING": {
       "MESSAGE": "Die Audiodatei konnte nicht geladen werden, entweder eine Fehlkonfiguration liegt vor oder der Server ist nicht erreichbar",

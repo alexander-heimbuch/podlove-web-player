@@ -5,9 +5,10 @@
         :color="theme.player.actions.icon"
         v-if="playstate === 'start' || playstate === 'idle' || playstate === 'end' || playstate === 'pause'"/>
       <PauseIcon :color="theme.player.actions.icon" v-if="playstate === 'playing'" />
+      <ErrorIcon :color="theme.player.actions.icon" v-if="playstate === 'error'" />
       <span v-if="playstate === 'start'" class="play-text" :style="textStyle(theme)">{{secondsToTime(duration)}}</span>
       <span v-if="playstate === 'idle'" class="play-text" :style="textStyle(theme)">{{secondsToTime(playtime)}}</span>
-      <span v-if="playstate === 'end'" class="play-text" :style="textStyle(theme)">replay</span>
+      <span v-if="playstate === 'end'" class="play-text" :style="textStyle(theme)">{{ $t('PLAYER.REPLAY') }}</span>
       <LoadingIndicator v-if="playstate === 'loading'" />
     </span>
   </PodloveButton>
@@ -19,6 +20,7 @@
 
   import PlayIcon from 'icons/PlayIcon.vue'
   import PauseIcon from 'icons/PauseIcon.vue'
+  import ErrorIcon from 'icons/ErrorIcon.vue'
   import PodloveButton from 'shared/Button.vue'
   import LoadingIndicator from './LoadingIndicator.vue'
 
@@ -35,6 +37,7 @@
       PodloveButton,
       PlayIcon,
       PauseIcon,
+      ErrorIcon,
       LoadingIndicator
     },
     data() {
@@ -54,6 +57,7 @@
           case 'start':
           case 'idle':
           case 'pause':
+          case 'error':
             store.dispatch(store.actions.play())
             break
           case 'end':

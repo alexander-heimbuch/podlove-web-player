@@ -16,6 +16,9 @@
     "SPEED": "Speed",
     "DEBUG_STATE": "Export Debug State"
   },
+  "PLAYER": {
+    "REPLAY": "replay"
+  },
   "ERROR": {
     "LOADING": {
       "MESSAGE": "Couldn't load the media file, either there is a misconfiguration or the server can't be reached",

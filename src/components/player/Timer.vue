@@ -55,7 +55,7 @@ export default {
     margin-top: -1em;
     height: 20px;
 
-    &.start, &.idle {
+    &.start, &.idle, &.error {
       margin-top: 0;
       height: 0;
     }

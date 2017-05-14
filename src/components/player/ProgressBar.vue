@@ -95,7 +95,7 @@
     transition: opacity ($animation-duration / 2), height $animation-duration;
     opacity: 1;
 
-    &.start {
+    &.start, &.error, &.loading {
       height: 0;
       opacity: 0;
       overflow: hidden;

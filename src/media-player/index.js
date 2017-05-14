@@ -28,6 +28,33 @@ export default (audio = [], {
   })
 
   let audioNode
+  let initialPlay = false
+
+  // Howler doesn't have an "start loading" event, so this is a monkey patch :/
+  // Maybe this could be a useful plugin
+  const howlerPlay = player.play.bind(player)
+  const howlerSeek = player.seek.bind(player)
+
+  player.once('play', () => {
+    initialPlay = true
+  })
+
+  player.play = (sprite, internal) => {
+    if (!initialPlay) {
+      onLoad()
+    }
+
+    howlerPlay(sprite, internal)
+  }
+
+  // Safe Seek
+  player.seek = (playtime) => {
+    try {
+      howlerSeek(playtime)
+    } catch (err) {
+
+    }
+  }
 
   player.once('load', () => {
     // No api sugar for the audio node :/
@@ -37,7 +64,7 @@ export default (audio = [], {
 
   player.on('play', onPlay)
 
-  // Playtime
+  // Playtime setter
   player.on('play', () => {
     ticker = setInterval(() => {
       setPlaytime(player.seek())
@@ -56,9 +83,7 @@ export default (audio = [], {
   })
 
   // Error
-  player.on('loaderror', () => {
-    onError('ERROR.LOADING.TITLE', 'ERROR.LOADING.MESSAGE')
-  })
+  player.on('loaderror', onError)
 
   // Extend seek functionality to be capable of jumping in without loaded player
   player.setPlaytime = playtime => {
@@ -67,23 +92,6 @@ export default (audio = [], {
     }
 
     player.seek(playtime)
-  }
-
-  // Howler doesn't have an "start loading" event, so this is a monkey patch :/
-  // Maybe this could be a useful plugin
-  const howlerPlay = player.play.bind(player)
-  let initialPlay = false
-
-  player.once('play', () => {
-    initialPlay = true
-  })
-
-  player.play = (sprite, internal) => {
-    if (!initialPlay) {
-      onLoad()
-    }
-
-    howlerPlay(sprite, internal)
   }
 
   return player

@@ -1,5 +1,7 @@
 import actions from '../actions'
 
+let mediaElement = null
+
 const initMediaPlayer = (mediaPlayer, dispatch, config) =>
   mediaPlayer(config.audio, {
     setPlaytime: playtime => dispatch(actions.setPlaytime(playtime)),
@@ -9,13 +11,12 @@ const initMediaPlayer = (mediaPlayer, dispatch, config) =>
     onPause: () => dispatch(actions.pauseEvent()),
     onStop: () => dispatch(actions.stopEvent()),
     onLoad: () => dispatch(actions.loading()),
-    onError: (title, message) => dispatch(actions.setError(title, message, 'LOAD_ERROR'))
+    onError: () => dispatch(actions.errorLoad())
   })
-
-let mediaElement = null
 
 export default mediaPlayer => (store, action) => {
   const state = store.getState()
+
   switch (action.type) {
     case 'INIT':
       mediaElement = initMediaPlayer(mediaPlayer, store.dispatch, action.payload)
