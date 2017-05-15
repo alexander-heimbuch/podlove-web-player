@@ -48,7 +48,7 @@
     justify-content: center;
     flex-direction: column;
 
-    &.start, &.idle, &.error {
+    &.start, &.idle, &.error, &.loading {
       padding-bottom: 0;
     }
   }
@@ -57,7 +57,7 @@
     width: 100%;
     display: flex;
 
-    &.start, &.error, &.loading {
+    &.start, &.error, &.loading, &.idle {
       margin-bottom: $margin;
     }
   }

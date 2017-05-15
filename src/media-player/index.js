@@ -2,6 +2,7 @@ import { Howl } from 'howler'
 import get from 'lodash/get'
 
 import buffer from './buffer'
+import extendPlayer from './extensions'
 
 /*
 * Exposes Methods:
@@ -21,78 +22,49 @@ export default (audio = [], {
   onLoad,
   onError
 }) => {
-  const player = new Howl({
+  const player = extendPlayer(new Howl({
     src: audio,
     html5: true,
     preload: false
-  })
+  }), { onLoad })
 
   let audioNode
-  let initialPlay = false
 
-  // Howler doesn't have an "start loading" event, so this is a monkey patch :/
-  // Maybe this could be a useful plugin
-  const howlerPlay = player.play.bind(player)
-  const howlerSeek = player.seek.bind(player)
-
-  player.once('play', () => {
-    initialPlay = true
-  })
-
-  player.play = (sprite, internal) => {
-    if (!initialPlay) {
-      onLoad()
-    }
-
-    howlerPlay(sprite, internal)
-  }
-
-  // Safe Seek
-  player.seek = (playtime) => {
-    try {
-      howlerSeek(playtime)
-    } catch (err) {
-
-    }
-  }
-
+  // Load Hooks
   player.once('load', () => {
     // No api sugar for the audio node :/
     audioNode = get(player, ['_sounds', 0, '_node'])
     setDuration(player.duration())
   })
 
+  // Playtime Hooks
   player.on('play', onPlay)
 
-  // Playtime setter
   player.on('play', () => {
     ticker = setInterval(() => {
+      console.log(player.seek())
       setPlaytime(player.seek())
       buffer(audioNode, setBufferState)
     }, 500)
   })
 
+  // Pause Hooks
   player.on('pause', () => {
     clearInterval(ticker)
     onPause()
   })
 
+  // Stop Hooks
   player.on('stop', () => {
     clearInterval(ticker)
     onStop()
   })
 
-  // Error
-  player.on('loaderror', onError)
-
-  // Extend seek functionality to be capable of jumping in without loaded player
-  player.setPlaytime = playtime => {
-    if (player.state() === 'unloaded') {
-      player.load()
-    }
-
-    player.seek(playtime)
-  }
+  // Error Hooks
+  player.on('loaderror', () => {
+    player.unload()
+    onError()
+  })
 
   return player
 }
