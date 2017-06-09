@@ -7,16 +7,16 @@
             :data-clipboard-text="clipboardContent(reference, share.link, playtime)"
             v-clipboard
             :style="buttonStyle(theme)">
-            {{ $t('SHARE.ACTIONS.COPY') }}
+            <CopyIcon :color="theme.tabs.button.text" />
         </ButtonComponent>
-        <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.link, playtime)" />
+        <input type="text" class="input-text" disabled :style="inputStyle(theme)" :value="clipboardContent(reference, share.link, playtime)" />
       </div>
       <div class="input-row">
         <div>
           <label class="input-label">
             <input type="checkbox" class="input-checkbox" :value="share.link.start" v-on:change="toggleStart(playtime)"/> {{ $t('SHARE.LABELS.START') }}
           </label>
-          <input type="text" class="input-text" :value="secondsToTime(share.link.starttime)" v-on:input="setStarttime"/>
+          <input type="text" class="input-text" :style="inputStyle(theme)" :value="secondsToTime(share.link.starttime)" v-on:input="setStarttime"/>
         </div>
       </div>
     </div>
@@ -27,6 +27,7 @@
     import store from 'store'
 
     import ButtonComponent from 'shared/Button.vue'
+    import CopyIcon from 'icons/CopyIcon.vue'
 
     import { addQueryParameter } from 'utils/url'
     import { secondsToTime, timeToSeconds } from 'utils/time'
@@ -63,8 +64,12 @@
     }, 1000)
 
     const buttonStyle = (theme) => ({
-        color: theme.tabs.button.text,
-        background: theme.tabs.button.background
+      background: theme.tabs.button.background,
+      'border-color': theme.tabs.input.border
+    })
+
+    const inputStyle = (theme) => ({
+      'border-color': theme.tabs.input.border
     })
 
     export default {
@@ -78,15 +83,18 @@
             }
         },
         methods: {
-            secondsToTime,
-            buttonStyle,
+          secondsToTime,
 
-            clipboardContent,
-            toggleStart,
-            setStarttime
+          buttonStyle,
+          inputStyle,
+
+          clipboardContent,
+          toggleStart,
+          setStarttime
         },
         components: {
-            ButtonComponent
+          ButtonComponent,
+          CopyIcon
         }
     }
 </script>

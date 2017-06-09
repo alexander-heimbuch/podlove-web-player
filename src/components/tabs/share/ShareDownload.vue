@@ -5,15 +5,15 @@
             <a class="button input-button truncate"
                 :href="activeAudioFile(share.download.files)"
                 :style="buttonStyle(theme)">
-                {{ $t('SHARE.ACTIONS.DOWNLOAD') }}
+                <DownloadIcon :color="theme.tabs.button.text" />
             </a>
-            <input type="text" class="input-text" disabled :value="activeAudioFile(share.download.files)" />
+            <input type="text" class="input-text" disabled :style="inputStyle(theme)" :value="activeAudioFile(share.download.files)" />
         </div>
         <div class="input-row" v-if="share.download.files.length > 1">
           <div></div>
           <div>
             <label class="input-label">{{ $t('SHARE.LABELS.TYPE') }}</label>
-            <select class="input-select" v-on:change="switchAudioType">
+            <select class="input-select" v-on:change="switchAudioType" :style="inputStyle(theme)">
               <option v-for="option in share.download.files"
                 v-bind:value="option.file"
                 :selected="activeAudioType(share.download.files) === option.type">
@@ -30,12 +30,17 @@
     import store from 'store'
 
     import ButtonComponent from 'shared/Button.vue'
+    import DownloadIcon from 'icons/DownloadIcon.vue'
 
     import { addQueryParameter } from 'utils/url'
 
     const buttonStyle = (theme) => ({
-        color: theme.tabs.button.text,
-        background: theme.tabs.button.background
+      background: theme.tabs.button.background,
+      'border-color': theme.tabs.input.border
+    })
+
+    const inputStyle = (theme) => ({
+      'border-color': theme.tabs.input.border
     })
 
     const activeAudioFile = compose(get('file'), find({active: true}))
@@ -48,18 +53,20 @@
     export default {
         data() {
             return {
-                share: this.$select('share'),
-                theme: this.$select('theme')
+              share: this.$select('share'),
+              theme: this.$select('theme')
             }
         },
         methods: {
-            buttonStyle,
-            activeAudioFile,
-            activeAudioType,
-            switchAudioType
+          buttonStyle,
+          inputStyle,
+          activeAudioFile,
+          activeAudioType,
+          switchAudioType
         },
         components: {
-            ButtonComponent
+          ButtonComponent,
+          DownloadIcon
         }
     }
 </script>

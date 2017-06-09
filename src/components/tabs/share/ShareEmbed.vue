@@ -7,18 +7,18 @@
           :data-clipboard-text="clipboardContent(reference, share.embed, playtime)"
           v-clipboard
           :style="buttonStyle(theme)">
-             {{ $t('SHARE.ACTIONS.COPY') }}
+            <CopyIcon :color="theme.tabs.button.text"/>
         </ButtonComponent>
-        <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.embed, playtime)" />
+        <input type="text" class="input-text" :style="inputStyle(theme)" disabled :value="clipboardContent(reference, share.embed, playtime)" />
       </div>
       <div class="input-row">
         <div class="share-config--time">
           <label class="input-label"><input type="checkbox" class="input-checkbox" :value="share.embed.start" v-on:change="toggleEmbedStart(playtime)"/> {{ $t('SHARE.LABELS.START') }}</label>
-          <input type="text" class="input-text" :value="secondsToTime(share.embed.starttime)" v-on:input="setStarttime"/>
+          <input type="text" class="input-text" :style="inputStyle(theme)" :value="secondsToTime(share.embed.starttime)" v-on:input="setStarttime"/>
         </div>
         <div class="share-config--size">
           <label class="input-label">{{ $t('SHARE.LABELS.SIZE') }}</label>
-          <select class="input-select" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
+          <select class="input-select" :style="inputStyle(theme)" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
             <option v-for="option in share.embed.availableSizes" v-bind:value="option">
               {{ option }}
             </option>
@@ -36,11 +36,17 @@
   import { secondsToTime, timeToSeconds } from 'utils/time'
 
   import ButtonComponent from 'shared/Button.vue'
+  import CopyIcon from 'icons/CopyIcon.vue'
 
   const buttonStyle = (theme) => ({
-    color: theme.tabs.button.text,
-    background: theme.tabs.button.background
+    background: theme.tabs.button.background,
+    'border-color': theme.tabs.input.border
   })
+
+  const inputStyle = (theme) => ({
+    'border-color': theme.tabs.input.border
+  })
+
 
   // Embed
   const clipboardContent = (reference, embed, playtime) => {
@@ -95,6 +101,7 @@
     methods: {
       secondsToTime,
       buttonStyle,
+      inputStyle,
 
       setEmbedSize,
       clipboardContent,
@@ -102,7 +109,8 @@
       setStarttime,
     },
     components: {
-      ButtonComponent
+      ButtonComponent,
+      CopyIcon
     }
   }
 
@@ -118,6 +126,7 @@
       .share-config--time, .share-config--size {
         .input-label {
           display: block;
+          height: auto;
         }
       }
     }
