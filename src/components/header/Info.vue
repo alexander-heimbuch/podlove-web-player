@@ -51,6 +51,7 @@
   @import 'variables';
 
   $poster-size: 100px;
+  $poster-size-small: 130px;
   $description-height: 100px;
 
   .info {
@@ -88,7 +89,7 @@
     }
   }
 
-  @media screen and (max-width: $width-l) {
+  @media screen and (max-width: $width-m) {
     .info {
       flex-direction: column;
       text-align: center;
@@ -98,6 +99,10 @@
         display: flex;
         margin: 0 0 $margin 0;
         justify-content: center;
+      }
+
+      .poster-container {
+        width: $poster-size-small;
       }
     }
   }
