@@ -84,6 +84,8 @@
     display: flex;
     cursor: pointer;
 
+    transition: background $animation-duration, color $animation-duration;
+
     .index {
       display: block;
       text-align: center;
@@ -106,6 +108,7 @@
       left: 0;
       bottom: 0;
       height: 3px;
+      transition: width $animation-duration;
     }
   }
 </style>
