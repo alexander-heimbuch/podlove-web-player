@@ -5,98 +5,6 @@ import { toInt, toFloat } from './helper'
 
 const timeRegex = new RegExp(/^(?:(\d{1,2}):)?(?:(\d{1,2}):)?(\d{1,2})(?:\.(\d{1,3}))?$/)
 
-// Parses hours from hh:mm:ss, hh:mm and mm
-export const parseHours = (time = '0') => {
-  const partials = time.split(':')
-  let hours, rest // eslint-disable-line
-
-  if (partials.length < 3) {
-    return 0
-  }
-
-  [hours, ...rest] = partials // eslint-disable-line
-  return toInt(hours)
-}
-
-export const parseMinutes = (time = '0') => {
-  let minutes, hours, seconds // eslint-disable-line
-
-  const partials = time.split(':')
-
-  switch (partials.length) {
-    case 3:
-      [hours, minutes, seconds] = partials
-      break
-
-    case 2:
-      [minutes, seconds] = partials
-      break
-
-    default:
-      minutes = '0'
-  }
-
-  return toInt(minutes)
-}
-
-export const parseSeconds = (time = '0') => {
-  let minutes, hours, seconds // eslint-disable-line
-
-  const partials = time.split(':')
-
-  switch (partials.length) {
-    case 3:
-      [hours, minutes, seconds] = partials
-      break
-
-    case 2:
-      [minutes, seconds] = partials
-      break
-
-    case 1:
-      [seconds] = partials
-      break
-
-    default:
-      seconds = '0'
-  }
-
-  return toInt(seconds)
-}
-
-export const parseMilliseconds = (time = '0') => {
-  let minutes, hours, seconds, milliseconds // eslint-disable-line
-
-  const partials = time.split(':')
-
-  switch (partials.length) {
-    case 3:
-      [hours, minutes, seconds] = partials
-      break
-
-    case 2:
-      [minutes, seconds] = partials
-      break
-
-    case 1:
-      [seconds] = partials
-      break
-
-    default:
-      seconds = '0'
-  }
-
-  const subpartial = seconds.split('.')
-
-  if (subpartial.length > 1) {
-    [seconds, milliseconds] = subpartial
-  } else {
-    milliseconds = '0'
-  }
-
-  return toInt(milliseconds)
-}
-
 // Transforms a h:mm:ss.f or mm:ss.ffff or ss time to milliseconds
 export const toPlayerTime = (time = '0') => {
   if (isNumber(time)) {
@@ -105,14 +13,14 @@ export const toPlayerTime = (time = '0') => {
 
   const matches = timeRegex.exec(time || '0')
 
-  const hours = parseHours(time) * 60 * 60 * 1000
-  const minutes = parseMinutes(time) * 60 * 1000
-  const seconds = parseSeconds(time) * 1000
-  const milliseconds = parseMilliseconds(time)
+  console.log(matches)
 
-  const hours = matches[2] ? matches[1] : 0
+  const hours = parseInt(matches[2] ? matches[1] : 0)
+  const minutes = parseInt(matches[2] ? matches[2] : (matches[1] || 0))
+  const seconds = parseInt(matches[3] || 0)
+  const milliseconds = parseInt(matches[4] || 0)
 
-  return hours + minutes + seconds + milliseconds
+  return (hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000) + milliseconds
 }
 
 export const calcSeconds = (time = 0) => parseInt(time % 60)
