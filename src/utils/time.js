@@ -13,7 +13,9 @@ export const toPlayerTime = (time = '0') => {
 
   const matches = timeRegex.exec(time || '0')
 
-  console.log(matches)
+  if (!matches) {
+    return 0
+  }
 
   const hours = parseInt(matches[2] ? matches[1] : 0)
   const minutes = parseInt(matches[2] ? matches[2] : (matches[1] || 0))
