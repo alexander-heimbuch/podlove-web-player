@@ -3,6 +3,8 @@ import { compose } from 'lodash/fp'
 
 import { toInt, toFloat } from './helper'
 
+const timeRegex = new RegExp(/^(?:(\d{1,2}):)?(?:(\d{1,2}):)?(\d{1,2})(?:\.(\d{1,3}))?$/)
+
 // Parses hours from hh:mm:ss, hh:mm and mm
 export const parseHours = (time = '0') => {
   const partials = time.split(':')
@@ -101,12 +103,14 @@ export const toPlayerTime = (time = '0') => {
     return time
   }
 
-  time = time || '0'
+  const matches = timeRegex.exec(time || '0')
 
   const hours = parseHours(time) * 60 * 60 * 1000
   const minutes = parseMinutes(time) * 60 * 1000
   const seconds = parseSeconds(time) * 1000
   const milliseconds = parseMilliseconds(time)
+
+  const hours = matches[2] ? matches[1] : 0
 
   return hours + minutes + seconds + milliseconds
 }
