@@ -19,6 +19,9 @@ const marquee = el => {
   if (hasOverflow(scroller)) {
     addClasses('marquee-container')(el)
     addClasses('marquee')(scroller)
+    setStyles({
+      'animation-duration': `${(scroller.scrollWidth / 100)}s` // min 10s
+    })(scroller)
   } else {
     removeClasses('marquee-container')(el)
     removeClasses('marquee')(scroller)

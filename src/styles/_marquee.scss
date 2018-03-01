@@ -24,14 +24,10 @@
     20% {
       opacity: 1;
       transform: translateX(0%); }
-    40% {
-      opacity: 1;
-      transform: translateX(0%);
-    }
-    80% {
-      opacity: 1;
-    }
     90% {
+      opacity: 1;
+    }
+    95% {
       opacity: 0;
       transform: translateX(-110%);
     }
