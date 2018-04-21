@@ -234,6 +234,31 @@ test.cb(
   }
 )
 
+test.cb(
+  `chaptersEffects: it triggers INIT_CHAPTERS with an empty list if a invalid response was sent`,
+  t => {
+    t.plan(2)
+
+    state = {
+      duration: 100000,
+      playtime: 45000
+    }
+
+    nock('http://localhost').get('/foo').reply(200, '<p>Some nasty string</p>')
+
+    store.dispatch = ({ type, payload }) => {
+      t.is(type, 'INIT_CHAPTERS')
+      t.deepEqual(payload, [])
+      t.end()
+    }
+
+    chapters(store, {
+      type: 'INIT',
+      payload: { chapters: 'http://localhost/foo' }
+    })
+  }
+)
+
 test(`chaptersEffects: it triggers UPDATE_PLAYTIME if PREVIOUS_CHAPTER is dispatched`, t => {
   state.chapters[0].active = true
   chapters(store, { type: 'PREVIOUS_CHAPTER' })

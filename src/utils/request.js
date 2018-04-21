@@ -7,4 +7,5 @@ export default url =>
       .query({ format: 'json' })
       .set('Accept', 'application/json')
       .then(res => res.body)
+      .then(res => typeof res === 'object' ? res : Promise.reject(new Error('no json response')))
     : new Promise(resolve => resolve(url)))
